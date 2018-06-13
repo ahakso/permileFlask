@@ -1,9 +1,11 @@
 from flask import render_template
 from mysite import app
+from mysite.a_Model import ModelIt
 from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 import pandas as pd
 import psycopg2
+from flask import request
 
 # Python code to connect to Postgres
 # You may need to modify this based on your OS, 
