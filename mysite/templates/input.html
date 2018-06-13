@@ -68,8 +68,8 @@
             <label for="birth_month">Your Car:</label>
             <select class="form-control" id="birth_month">
                 <option selected value=''> Select the Make of your car...</option>
-                {% for make in makes %}
-                <option value="{{ make }}">{{ make}}</option>
+                {% for key, _ in car_dict.items() %}
+                <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
 <!--                <option>Aug</option>
                 <option>4</option>

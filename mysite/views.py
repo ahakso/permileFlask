@@ -30,7 +30,7 @@ def index():
 @app.route('/input')
 def cesareans_input():
     makes = pd.Series(['Acura','Audi','Chevrolet','Ford'])
-    return render_template("input.html", makes = makes)
+    return render_template("input.html", car_dict = car_dict)
 
 @app.route('/output')
 def cesareans_output():
