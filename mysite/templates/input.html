@@ -65,10 +65,11 @@
 
       <form  action="/output" method="GET">
         <div class="form-group">
-            <label for="birth_month">Your Car::</label>
+            <label for="birth_month">Your Car:</label>
             <select class="form-control" id="birth_month">
                 <option selected value=''> Select the Make of your car...</option>
                 {% for make in makes %}
+                <option value="{{ make }}">{{ make}}</option>
                 {% endfor %}
 <!--                <option>Aug</option>
                 <option>4</option>
