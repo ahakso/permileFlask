@@ -25,7 +25,8 @@ def index():
        )
 @app.route('/input')
 def cesareans_input():
-    return render_template("input.html")
+    makes = pd.Series(['Acura','Audi','Chevrolet','Ford'])
+    return render_template("input.html", makes = makes)
 
 @app.route('/output')
 def cesareans_output():
