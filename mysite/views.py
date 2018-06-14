@@ -29,15 +29,11 @@ def index():
        )
 @app.route('/input')
 def cesareans_input():
-    makes = pd.Series(['Acura','Audi','Chevrolet','Ford'])
     return render_template("input.html", car_dict = car_dict)
 
 @app.route('/output')
 def cesareans_output():
-  #pull 'birth_month' from input field and store it
-  patient = request.args.get('user_make')
-  print(patient)
-  return render_template("output.html", births = patient, the_result = patient)
-#@app.route('/output')
-#def cesareans_output():
-#    return render_template("output.html")
+  #pull the user make from input field and store it
+  user_make = request.args.get('user_make')
+  print(user_make)
+  return render_template("output.html", births = user_make, the_result = user_make)

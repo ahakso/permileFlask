@@ -59,16 +59,17 @@
     <div class="starter-template">
         <h2>Tell Us About Your Car!</h2>
         <p>All we need is your make, model and year</p>
+        <p test id="demo">test</p>
     </div>
 
     <div class = "container">
 
-      <form  action="/output" method="GET">
+      <form  action="/output" method="POST">
         
             <!-- Make dropdown -->
         <div class="selectpicker form-group">
             <label for="user_make">Your Car:</label>
-            <select class="form-control" id="user_make" name="user_make">
+            <select class="form-control" id="user_make" name="user_make" onchange="myFunction()">
                 <option selected value=''> Select the Make of your car...</option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -78,7 +79,7 @@
 
          <!-- Model dropdown -->
         <div class="form-group">
-            <select class="form-control" id="user_model">
+            <select class="form-control" name="user_model" id="user_model">
                 <option selected value=''> Select model </option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -88,14 +89,13 @@
 
          <!-- Year dropdown -->
         <div class="form-group">
-            <select class="form-control" id="user_year">
+            <select class="form-control" name="user_year" id="user_year">
                 <option selected value=''> Select year <option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
             </select>          
         </div>
-
         <div>
           <button type="submit" class="btn btn-default btn-lg">Learn your cost!!</button>
         </div>
@@ -107,11 +107,16 @@
     <script src="static/js/bootstrap.min.js"></script>
 
   </div> <!-- /.container-->
-
-   <!-- Bootstrap core JavaScript
+   <script charset="utf-8" type="text/javascript">
+       var select_make = $('#user_make')
+       //select_make.on('change',document.write(select_make.val()))
+      function myFunction() {                 
+       document.getElementById("demo").innerHTML = select_make.val()
+}
+       document.getElementById("demo").innerHTML = 'js is writing to the html';
+    </script>
+  <!-- Bootstrap core JavaScript
    ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
-   </body>
-</html>
