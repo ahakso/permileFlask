@@ -71,12 +71,12 @@
     
     <div class = "container">
 
-      <form  action="/output" method="POST">
+      <form  action="/get_models" method="POST">
         
             <!-- Make dropdown -->
         <div class="selectpicker form-group">
-            <label for="user_make">Your Car:</label>
-            <select class="form-control" id="user_make" name="user_make" onchange="onMakeChange()">
+            <label for="select_make">Your Car:</label>
+            <select class="form-control" id="select_make" name="select_make">{# onchange="onMakeChange()">#}
                 <option selected value=''> Select the Make of your car...</option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -86,7 +86,7 @@
 
          <!-- Model dropdown -->
         <div class="form-group">
-            <select class="form-control" name="user_model" id="user_model">
+            <select class="form-control" name="select_model" id="select_model">
                 <option selected value=''> ... </option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -115,8 +115,8 @@
 
   </div> <!-- /.container-->
    <script charset="utf-8" type="text/javascript">
-       var select_make = $('#user_make')
-       var select_model = $('#user_model')
+       var select_make = $('#select_make')
+       var select_model = $('#select_model')
        var select_year = $('#user_year')
        //select_make.on('change',document.write(select_make.val()))
       function onMakeChange() {                 
@@ -126,8 +126,43 @@
 }
        document.getElementById("demo").innerHTML = 'js is writing to the html';
     </script>
+
+    <script charset="utf-8" type="text/javascript">
+    $(function() {
+        var dropdown = {
+            make: $('#select_make'),
+            model: $('#select_model')
+        };
+        // function to call XHR and update goodsrec dropdown
+        function updateModel() {
+            document.getElementById("demo").innerHTML = dropdown.make.val();
+            var make = dropdown.make.val();
+            if (make.length) {
+                dropdown.model.empty();
+                $.getJSON("{{ url_for('get_models') }}", {make: make}, function(data) {
+                    data.forEach(function(item) {
+//                  document.getElementById("demo").innerHTML = item.;
+                        dropdown.model.append(
+                            $('<option>', {
+                                // style: df['colors'].iloc[item.id]
+                                value: item.name,
+                                text: item.name
+                            })
+                        );
+                    });
+                });
+            }
+        }
+        // event listener to customer dropdown change
+dropdown.make.on('change', function() {
+    updateModel();
+});
+});
+</script>
   <!-- Bootstrap core JavaScript
    ================================================== -->
    <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
+
+
