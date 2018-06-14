@@ -8,16 +8,6 @@ import psycopg2
 import pickle
 from flask import request
 
-# Python code to connect to Postgres
-# You may need to modify this based on your OS, 
-# as detailed in the postgres dev setup materials.
-user = 'ahakso' #add your Postgres username here      
-host = 'localhost'
-dbname = 'birth_db'
-db = create_engine('postgres://%s%s/%s'%(user,host,dbname))
-con = None
-con = psycopg2.connect(database = dbname, user = user)
-
 with open('/Users/ahakso/Documents/gitDir/permileFlask/mysite/static/car_data.pkl','rb') as f:
     car_dict, car_data = pickle.load(f)
 
