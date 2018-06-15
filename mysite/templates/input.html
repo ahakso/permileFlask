@@ -71,7 +71,7 @@
     
     <div class = "container">
 
-      <form  action="/get_models" method="POST">
+        <form  method="POST"> {#action="/get_models" this line doesn't seem to be necessary#}
         
             <!-- Make dropdown -->
         <div class="selectpicker form-group">
@@ -114,24 +114,14 @@
     <script src="static/js/bootstrap.min.js"></script>
 
   </div> <!-- /.container-->
-   <script charset="utf-8" type="text/javascript">
-       var select_make = $('#select_make')
-       var select_model = $('#select_model')
-       var select_year = $('#select_year')
-       //select_make.on('change',document.write(select_make.val()))
-      function onMakeChange() {                 
-       document.getElementById("demo").innerHTML = select_make.val()
-          select_model.empty()
-          select_model.append($("<option></option>").attr("value",'').text("Select Model"))
-}
-       document.getElementById("demo").innerHTML = 'js is writing to the html';
-    </script>
 
-    <script charset="utf-8" type="text/javascript">
+  
+  <script charset="utf-8" type="text/javascript">
     $(function() {
         var dropdown = {
             make: $('#select_make'),
-            model: $('#select_model')
+            model:$('#select_model'),
+            year: $('#select_year')
         };
         // function to call XHR and update goodsrec dropdown
         function updateModel() {
@@ -153,9 +143,33 @@
                 });
             }
         }
-        // event listener to customer dropdown change
+
+        function updateYear() {
+            var model = dropdown.model.val();
+            var make = dropdown.make.val();
+            if (model.length) {
+                dropdown.year.empty();
+                $.getJSON("{{ url_for('get_years') }}", {model: model, make: make}, function(data) {
+                    data.forEach(function(item) {
+//                  document.getElementById("demo").innerHTML = item.;
+                        dropdown.year.append(
+                            $('<option>', {
+                                // style: df['colors'].iloc[item.id]
+                                value: item.name,
+                                text: item.name
+                            })
+                        );
+                    });
+                });
+            }
+        }
+        // event listener to customer make dropdown change
 dropdown.make.on('change', function() {
     updateModel();
+});
+    // event listener to customer model dropdown change
+dropdown.model.on('change', function() {
+    updateYear();
 });
 });
 </script>
@@ -165,4 +179,17 @@ dropdown.make.on('change', function() {
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
 
+<!--
+   <script charset="utf-8" type="text/javascript">
+       var select_make = $('#select_make')
+       var select_model = $('#select_model')
+       var select_year = $('#select_year')
+      function onMakeChange() {                 
+       document.getElementById("demo").innerHTML = select_make.val()
+          select_model.empty()
+          select_model.append($("<option></option>").attr("value",'').text("Select Model"))
+}
+       document.getElementById("demo").innerHTML = 'js is writing to the html';
+    </script>
+    -->
 

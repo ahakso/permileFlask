@@ -40,15 +40,19 @@ def get_models():
         models = list(car_dict[make])
         data = [{"id": str(x), "name": str(x)} for x in models]
         
-        print(data)
+#       print(data)
     return jsonify(data)
 
 @app.route('/get_years')
 def get_years():
     model = request.args.get('model')
+    make = request.args.get('make')
+#   print('\n\n{} {}\n\n'.format(make, model))
+#   print('make: {}'.format(make))
+#   print('model: {}'.format(model))
     if model:
-        models = list(car_dict[make][model])
-        data = [{"id": str(x), "name": str(x)} for x in models]
+        years = list(car_dict[make][model])
+        data = [{"id": str(x), "name": str(x)} for x in years]
         
         print(data)
     return jsonify(data)
