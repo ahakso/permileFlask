@@ -43,6 +43,17 @@ def get_models():
         print(data)
     return jsonify(data)
 
+@app.route('/get_years')
+def get_years():
+    model = request.args.get('model')
+    if model:
+        models = list(car_dict[make][model])
+        data = [{"id": str(x), "name": str(x)} for x in models]
+        
+        print(data)
+    return jsonify(data)
+
+
 #@app.route('/get_model_array')
 #def read_txt_file():
   #read it in
