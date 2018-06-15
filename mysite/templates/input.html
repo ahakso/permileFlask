@@ -129,6 +129,10 @@
             var make = dropdown.make.val();
             if (make.length) {
                 dropdown.model.empty();
+                dropdown.model.append($('<option>',{
+                    value: 1,
+                    text: "Select Model"
+                }));
                 $.getJSON("{{ url_for('get_models') }}", {make: make}, function(data) {
                     data.forEach(function(item) {
 //                  document.getElementById("demo").innerHTML = item.;
@@ -149,6 +153,11 @@
             var make = dropdown.make.val();
             if (model.length) {
                 dropdown.year.empty();
+                dropdown.year.append($('<option>',{
+                    value: 1,
+                    text: "Select Year"
+                }));
+
                 $.getJSON("{{ url_for('get_years') }}", {model: model, make: make}, function(data) {
                     data.forEach(function(item) {
 //                  document.getElementById("demo").innerHTML = item.;
