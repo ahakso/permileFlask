@@ -8,7 +8,12 @@ from sqlalchemy_utils import database_exists, create_database
 import pandas as pd
 import psycopg2
 import pickle
+import matplotlib.pyplot as plt
 from flask import request
+import pdb
+import numpy as np
+import base64
+from io import BytesIO
 
 with open('/Users/ahakso/Documents/gitDir/permileFlask/mysite/static/car_data.pkl','rb') as f:
     car_dict, car_data = pickle.load(f)
@@ -27,15 +32,40 @@ def cesareans_input():
     return render_template("input.html", car_dict = car_dict)
 
 @app.route('/output', methods=['GET', 'POST'])
-def cesareans_output():
+
+def permileOutput():
+  def mysavefig():
+    png_output = BytesIO()
+    plt.savefig(png_output)
+    png_output.seek(0)  # rewind to beginning of file
+    figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
+    return figdata_png
+
+
   #pull the user make from input field and store it
-  print("In output page function")
   user_make = request.form['select_make']
   user_model= request.form['select_model']
   user_year = request.form['select_year']
-# user_make = request.args.get('user_make')
-  print('\n\n{} {} {}\n\n'.format(user_year, user_make, user_model))
-  return render_template("output.html", user_vehicle = (user_make, user_model, user_year))
+    
+  # Pull relevant values from table
+  depreciation = car_data.loc[(user_make, user_model,int(user_year)),'dollars_per_mile']
+  fuel = 3.5/car_data.loc[(user_make, user_model,int(user_year)),'mpg']
+  repair = car_data.loc[(user_make, user_model,int(user_year)),'repair']
+  maintain = car_data.loc[(user_make, user_model,int(user_year)),'maintain']
+  total = fuel+repair+maintain+depreciation
+  print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
+
+  # Make a pie plot
+# fig, ax = plt.subplots(1)
+# ax.set_aspect(1)
+  piedata = np.array([fuel, depreciation, maintain, repair])/total
+  pielbl = ['gas','depreciation','maintenance','repair']
+  plt.pie(piedata,labels=pielbl,autopct='%.1f')
+  pie = mysavefig()
+
+  return render_template("output.html", user_vehicle = (user_make, user_model, user_year),\
+          total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
+          pie = pie)
 
 @app.route('/get_models')
 def get_models():
