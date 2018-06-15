@@ -26,12 +26,16 @@ def index():
 def cesareans_input():
     return render_template("input.html", car_dict = car_dict)
 
-@app.route('/output')
+@app.route('/output', methods=['GET', 'POST'])
 def cesareans_output():
   #pull the user make from input field and store it
-  user_make = request.args.get('user_make')
-  print(user_make)
-  return render_template("output.html", births = user_make, the_result = user_make)
+  print("In output page function")
+  user_make = request.form['select_make']
+  user_model= request.form['select_model']
+  user_year = request.form['select_year']
+# user_make = request.args.get('user_make')
+  print('\n\n{} {} {}\n\n'.format(user_year, user_make, user_model))
+  return render_template("output.html", user_vehicle = (user_make, user_model, user_year))
 
 @app.route('/get_models')
 def get_models():
