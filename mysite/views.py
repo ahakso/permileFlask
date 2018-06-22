@@ -3,8 +3,6 @@ from flask import jsonify
 from flask import url_for
 from mysite import app
 from mysite.a_Model import ModelIt
-from sqlalchemy import create_engine
-from sqlalchemy_utils import database_exists, create_database
 import pandas as pd
 import psycopg2
 import pickle
@@ -16,17 +14,12 @@ import base64
 from io import BytesIO
 
 with open('/Users/ahakso/Documents/gitDir/permileFlask/mysite/static/car_data.pkl','rb') as f:
-    car_dict, car_data = pickle.load(f)
+    car_dict, car_data, _= pickle.load(f)
 
 #staticfile_path = '/static'
 #app.config['jsonfiles'] = staticfile_path
 
 @app.route('/')
-@app.route('/index')
-def index():
-    return render_template("index.html",
-       title = 'Home', user = { 'nickname': 'Miguel' },
-       )
 @app.route('/input', methods=['GET','POST'])
 def cesareans_input():
     return render_template("input.html", car_dict = car_dict)
@@ -40,6 +33,13 @@ def permileOutput():
     png_output.seek(0)  # rewind to beginning of file
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
     return figdata_png
+  def make_autopct(values):
+    def my_autopct(pct):
+        total = sum(values)
+        val = pct*total
+        #pdb.set_trace()
+        return '{p:.1f}%\n({v:.0f} cents/mi)'.format(p=pct,v=val)
+    return my_autopct
 
 
   #pull the user make from input field and store it
@@ -60,7 +60,9 @@ def permileOutput():
 # ax.set_aspect(1)
   piedata = np.array([fuel, depreciation, maintain, repair])/total
   pielbl = ['gas','depreciation','maintenance','repair']
-  plt.pie(piedata,labels=pielbl,autopct='%.1f')
+  plt.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
+  ax = plt.gca()
+  ax.set_aspect(1)
   pie = mysavefig()
 
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),\

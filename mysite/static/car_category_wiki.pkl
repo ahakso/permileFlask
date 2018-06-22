@@ -1,0 +1,369 @@
+,make,models,class
+0,Acura,CDX,luxury compact crossover
+1,Acura,MDX,luxury midsize crossover
+2,Acura,RDX,luxury compact crossover
+3,Alfa Romeo,Stelvio,luxury midsize crossover
+4,AM General,Humvee C-Series,fullsize
+5,Audi,Q2,luxury subcompact crossover
+6,Audi,Q3,luxury compact crossover
+7,Audi,Q5,luxury compact crossover
+8,Audi,Q7,luxury fullsize crossover
+9,BAW,Yusheng 007,subcompact crossover
+10,BAW,Qishi,compact
+11,BAW,Yongshi,compact
+12,Bentley,Bentayga,luxury midsize
+13,Buick,Encore,subcompact crossover
+14,Buick,Enclave,luxury fullsize crossover
+15,Buick,Envision,luxury compact crossover
+16,BMW,X1,luxury compact crossover
+17,BMW,X2,luxury compact crossover
+18,BMW,X3,luxury compact crossover
+19,BMW,X4,luxury compact crossover
+20,BMW,X5,luxury midsize crossover
+21,BMW,X6,luxury midsize crossover
+22,BMW M,X5 M,sport luxury midsize crossover
+23,BMW M,X6 M,sport luxury midsize crossover
+24,Borgward,BX5,compact crossover
+25,Borgward,BX7,midsize crossover
+26,Brabus,Brabus GLK-Class,sport luxury compact crossover
+27,Brabus,Brabus G-Class,sport luxury midsize
+28,Brabus,Brabus GL-Class,sport luxury fullsize crossover
+29,Brilliance,FRV Cross,compact crossover
+30,Brilliance,V3,subcompact crossover
+31,Brilliance,V5,compact crossover
+32,BYD,S6,midsize crossover
+33,BYD,S6 DM,Hybrid midsize crossover
+34,BYD,S7,midsize crossover
+35,BYD,Song,compact crossover
+36,BYD,Tang,midsize crossover
+37,BYD,Yuan,subcompact crossover
+38,Cadillac,Escalade,luxury fullsize
+39,Cadillac,Escalade ESV,luxury extended length
+40,Cadillac,XT5,luxury midsize crossover
+41,Chana,CX70,midsize crossover
+42,Chang'an,CS15,subcompact crossover
+43,Chang'an,CS35,compact crossover
+44,Chang'an,CS75,midsize crossover
+45,Chang'an,CS95,luxury crossover
+46,Changfeng Liebao,Black King Kong,luxury midsize
+47,Changfeng Liebao,CS6,midsize crossover
+48,Changfeng Liebao,CS7,luxury subcompact crossover
+49,Changfeng Liebao,DUV,luxury midsize
+50,Changfeng Liebao,Feiteng,compact
+51,Changfeng Liebao,Qibing,midsize
+52,Changhe,Q25,subcompact crossover
+53,Changhe,Q35,compact crossover
+54,Chery,X1,subcompact crossover
+55,Chery,Tiggo,compact crossover
+56,Chery,Tiggo 3,compact crossover
+57,Chery,Tiggo 3X,subcompact crossover
+58,Chery,Tiggo 5 / Grand Tiggo,compact crossover
+59,Chery,Tiggo 7,compact crossover
+60,Chery (Rely),X5,midsize crossover
+61,,Trax,subcompact crossover
+62,Chevrolet,Niva,subcompact
+63,Chevrolet,Tracker,subcompact
+64,Chevrolet/GM Korea,Captiva,compact crossover
+65,Chevrolet,Captiva Sport,compact crossover
+66,Chevrolet/GM Korea,Orlando,compact
+67,Chevrolet,Equinox,midsize crossover
+68,Chevrolet,Trailblazer,midsize
+69,Chevrolet,Traverse,fullsize crossover
+70,Chevrolet,Tahoe,fullsize/luxury fullsize
+71,Chevrolet,Suburban,extended length/luxury extended length
+72,Citroën,C3 Aircross,compact crossover
+73,Citroën,C3-XR,compact crossover
+74,Citroën,C4 Aircross,compact crossover
+75,Citroën,C5 Aircross,midsize crossover
+76,CMC,CMC Zinger,midsize
+77,Conquest Vehicles,Knight XV,luxury fullsize
+78,Dacia,Sandero Stepway,subcompact crossover
+79,Dacia,Duster,compact
+80,Daewoo,Winstorm,midsize crossover
+81,Daewoo,Winstorm MaXX,compact crossover
+82,Daihatsu,Terios,subcompact
+83,Daihatsu,Terios Advantage,compact
+84,Dodge,Journey,midsize crossover
+85,Dodge,Durango,fullsize
+86,Dongfeng,Fengdu MX6,midsize
+87,Dongfeng,Fengshen AX3,subcompact crossover
+88,Dongfeng,Fengshen AX5,compact crossover
+89,Dongfeng,Fengshen AX7,midsize crossover
+90,Dongfeng,Fenxing Jingyi X3,compact
+91,Dongfeng,Fenxing Jingyi X5,midsize
+92,Dongfeng,Oting,midsize
+93,DR,5,compact crossover
+94,DS,6,compact crossover
+95,DS,DS 7 Crossback,compact crossover
+96,Eterniti,Artemis,sport luxury midsize crossover
+97,FAW Automotive,Besturn X40,midsize crossover
+98,FAW Automotive,Besturn X80,midsize crossover
+99,FAW,Junpai D60,compact crossover
+100,Fiat Automobiles,500X,subcompact crossover
+101,Fiat Automobiles,Panda 4x4,subcompact
+102,Fiat Automobiles,Freemont,midsize crossover
+103,Foday,Explorer,midsize
+104,Foday,Landfort,midsize
+105,Force,One,midsize
+106,Force,Trax,midsize
+107,Ford,EcoSport,subcompact crossover
+108,Ford,Kuga,compact crossover
+109,Ford,Edge,midsize crossover
+110,Ford,Escape,compact crossover
+111,Ford,Everest,midsize
+112,Ford,Explorer,fullsize crossover
+113,Ford,Flex,fullsize crossover
+114,Ford,Expedition,fullsize
+115,Ford,Expedition EL,extended length/luxury extended length
+116,,Ford F-650 XUV,luxury fullsize
+117,Foton,Sauvana,compact
+118,Freightliner,Sport Chassis,luxury fullsize
+119,,GM HydroGen4,fuel cell midsize crossover
+120,GMC,Terrain,
+121,GMC,Terrain Denali,
+122,GMC,Acadia,
+123,GMC,Acadia Denali,
+124,GMC,Yukon,fulllsize
+125,GMC,Yukon Denali,luxury fullsize
+126,GMC,Yukon XL,extended length
+127,GMC,Yukon XL Denali,luxury extended length
+128,Gonow,G3,compact crossover
+129,Gonow,GS1,midsize crossover
+130,Gonow,New Jetstar,midsize
+131,Gonow,Aoosed G5,midsize
+132,Gonow,Aoosed GX5,midsize
+133,Gonow,Aoosed GX6,midsize/luxury midsize
+134,Great Wall,Haval H3,compact crossover
+135,Great Wall,Haval H5,compact crossover
+136,Great Wall,Haval H6,midsize crossover
+137,Great Wall,Safe,compact
+138,Haima,S5,compact crossover
+139,Haima,S7,midsize crossover
+140,Hamann Motorsport,X6,sport luxury midsize crossover
+141,Haval,H1,subcompact crossover
+142,Haval,H2,compact crossover
+143,Haval,H6,midsize crossover
+144,Haval,H6 Coupe,midsize crossover
+145,Haval,H7,midsize crossover
+146,Haval,H8,midsize
+147,Haval,H9,fullsize
+148,Hawtai,Santa Fe,midsize crossover
+149,Hawtai,Boliger,midsize crossover
+150,Holden,Trax,subcompact crossover
+151,Holden,Captiva,compact crossover
+152,Holden,Colorado 7,midsize
+153,Holden,Equinox,midsize crossover
+154,Holden,Acadia,full size crossover/SUV
+155,Honda,BR-V,subcompact crossover
+156,Honda,Vezel,compact crossover
+157,Honda,CR-V,midsize crossover/luxury midsize crossover
+158,Honda,Pilot,midsize
+159,Honda,Ridgeline,midsize SUT(2005–2014)
+160,Honda,Crosstour,fullsize crossover/luxury fullsize crossover
+161,Honda,XR-V,midsize
+162,Honda,HR-V,subcompact crossover
+163,Huanghai,Aurora,compact
+164,Huanghai,Challenger,midsize
+165,Huanghai,Landscape,compact
+166,Huanghai,Landscape V3,compact
+167,Huansu,S2,compact
+168,Huansu,S3,midsize
+169,Huansu,S6,midsize
+170,Hyundai,Creta/ix25,subcompact crossover
+171,Hyundai,Kona,Subcompact crossover
+172,Hyundai,Santa Fe,"compact crossover (2000–2006),midsize crossover (2007–present)"
+173,Hyundai,Tucson,compact crossover
+174,Infiniti,EX / QX50,luxury compact crossover
+175,Infiniti,ESQ,Japan
+176,Infiniti,FX / QX70,luxury midsize crossover
+177,Infiniti,JX / QX60,luxury fullsize crossover
+178,Infiniti,QX / QX80,"luxury compact(1996–2003),luxury fullsize(2004–present)"
+179,Infiniti,QX30,luxury subcompact crossover
+180,Isuzu,MU-X,midsize crossover
+181,JAC,J3 Cross,subcompact crossover
+182,JAC,S1/Rein,midsize crossover
+183,JAC,S2,subcompact crossover
+184,JAC,S3,compact crossover
+185,JAC,S5,midsize crossover
+186,JAC,S7,midsize crossover
+187,Jaguar,E-Pace,subcompact luxury crossover
+188,Jaguar,F-Pace,luxury midsize crossover
+189,Jeep,Renegade,subcompact crossover
+190,Jeep,Compass,compact crossover
+191,Jeep,Wrangler,compact
+192,Jeep,Wrangler Unlimited JK,compact
+193,Jeep,Cherokee,midsize crossover
+194,Jeep,Grand Cherokee,midsize crossover/luxury midsize crossover
+195,Jiangling,Yusheng,midsize
+196,Jinbei,S30,subcompact crossover
+197,Jonway,A380,subcompact crossover
+198,Kantanka,Otumfo,midsize
+199,Kawei,W1,midsize crossover
+200,Kia,Borrego/Mohave,midsize
+201,Kia,KX3,subcompact crossover
+202,Kia,Niro,compact hybrid crossover
+203,Kia,Sorento,"midsize(2002–2009),midsize crossover(2010–present)"
+204,Kia,Sportage,compact crossover
+205,Kia,Stonic,subcompact crossover
+206,Lada,Niva,subcompact
+207,Land Rover,Defender,"subcompact, compact"
+208,Land Rover,Range Rover Evoque,luxury compact crossover
+209,Land Rover,Freelander,luxury compact
+210,Land Rover,Discovery Sport,luxury sport compact
+211,Land Rover,Discovery,luxury midsize
+212,Land Rover,Range Rover Velar,luxury midsize
+213,Land Rover,Range Rover Sport,luxury sport midsize
+214,Land Rover,Range Rover,luxury fullsize
+215,Landwind,X5,compact crossover
+216,Landwind,X6,midsize
+217,Landwind,X7,compact
+218,Landwind,X8,midsize
+219,Landwind,X9,subcompact
+220,Lexus,GX,luxury midsize
+221,Lexus,LX,luxury fullsize
+222,Lexus,NX,luxury compact crossover
+223,Lexus,RX,"luxury compact crossover(1998–2003), luxury midsize crossover(2004–present)"
+224,Lifan,X60,compact crossover
+225,Lifan,X50,subcompact crossover
+226,Lincoln,MKC,luxury compact crossover
+227,Lincoln,MKX,luxury midsize crossover
+228,Lincoln,MKT,luxury fullsize crossover
+229,Lincoln,Navigator,luxury fullsize
+230,Lincoln,Navigator L,luxury extended length
+231,Luxgen,U6,compact
+232,Luxgen,U7,midsize
+233,Mahindra & Mahindra,Thar,subcompact
+234,Mahindra & Mahindra,Bolero,compact
+235,Mahindra & Mahindra,XUV500,midsize crossover
+236,Mahindra & Mahindra,Scorpio,midsize
+237,Maserati,Levante,luxury midsize crossover
+238,Mazda,CX-3,subcompact crossover
+239,Mazda,CX-5,compact crossover
+240,Mazda,CX-9,fullsize crossover
+241,Mercedes-Benz,G-Class,
+242,Mercedes-Benz,GLA-Class,luxury subcompact crossover
+243,Mercedes-Benz,GLC-Class,luxury compact crossover
+244,Mercedes-Benz,GLE-Class,luxury midsize crossover
+245,Mercedes-Benz,GLE-Class Coupe,luxury midsize cross coupe
+246,Mercedes-Benz,GLS-Class,luxury fullsize crossover
+247,MG,ZS,compact crossover
+248,MG,GS,compact crossover
+249,Mini,Countryman,subcompact crossover
+250,Mitsubishi,ASX,compact crossover
+251,Mitsubishi,Outlander,midsize crossover
+252,Mitsubishi,Outlander PHEV,midsize crossover
+253,Mitsubishi,Pajero,"subcompact(1982–1991),fullsize(1991–present)"
+254,MVM,X33,compact crossover
+255,Nissan,Armada,fullsize
+256,Nissan,Juke,subcompact crossover
+257,Nissan,Murano,midsize crossover
+258,Nissan,Pathfinder,fullsize crossover
+259,Nissan,Patrol Y61,"subcompact(1951–2002), fullsize/luxury fullsize(1987–present)"
+260,Nissan,Patrol Y62,fullsize/luxury fullsize
+261,Nissan,Qashqai,compact crossover
+262,Nissan,Rogue,compact crossover
+263,Nissan,Skyline Crossover,luxury compact crossover
+264,Nissan,Terrano,compact
+265,Nissan,Paladin,compact
+266,Nissan,Xterra,compact
+267,Nissan,X-Trail,compact
+268,Opel,Antara,compact crossover
+269,Opel,Crossland X,subcompact crossover
+270,Opel,Mokka X,subcompact crossover
+271,Opel,Opel Grandland X,compact crossover
+272,Perodua,Nautica,subcompact
+273,Peugeot,2008,compact crossover
+274,Peugeot,3008,compact crossover
+275,Peugeot,4008,compact crossover
+276,Peugeot,Peugeot 5008,midsize crossover
+277,Peugeot,508 RXH,hybrid luxury fullsize crossover
+278,Phoenix Motorcars,SUV,electric compact crossover
+279,Phoenix Motorcars,SUT,electric compact SUT
+280,Porsche,Macan,luxury compact crossover
+281,Porsche,Cayenne,luxury midsize crossover
+282,Premier,Premier RiO,subcompact
+283,Pyeonghwa,Pronto,compact crossover
+284,Qoros,3 City SUV,subcompact crossover
+285,Qoros,5,compact crossover
+286,Renault,Captur,subcompact crossover
+287,Renault,Kadjar,compact crossover
+288,Renault,Koleos,compact crossover/luxury compact crossover
+289,Renault,Sandero Stepway,subcompact crossover
+290,Renault Samsung,QM5,compact crossover/luxury compact crossover
+291,Renault Samsung,QM3,subcompact crossover
+292,Roewe,W5,luxury midsize crossover
+293,Ruf,Dakara,luxury sport midsize crossover
+294,SEAT,Ateca,compact crossover
+295,Senova,X65,midsize crossover
+296,Skoda,Karoq,compact crossover
+297,Škoda,Kodiaq,midsize crossover
+298,Škoda,Yeti,subcompact
+299,Soueast,DX7 Bolang,compact crossover
+300,Soueast,V Cross,compact crossover
+301,SRT,Grand Cherokee,luxury sport midsize crossover
+302,SsangYong,Korando,"subcompact(1996–2005), compact crossover/luxury compact crossover(2010–present)"
+303,SsangYong,Kyron,luxury midsize crossover
+304,SsangYong,Rexton,luxury midsize
+305,SsangYong,Tivoli,luxury subcompact
+306,SsangYong,XLV,luxury subcompact extended
+307,SsangYong,Actyon Sports,midsize SUT
+308,Shuanghuan,Shuanghuan SCEO,midsize crossover
+309,Steinmetz,Antara,sport luxury subcompact
+310,Subaru,Crosstrek,compact crossover
+311,Subaru,Exiga Crossover 7,midsize
+312,Subaru,Forester,"compact crossover(1997–2008),midsize crossover(2009–present)"
+313,Subaru,Outback,midsize crossover
+314,Suzuki,SX4,subcompact crossover
+315,Suzuki,Jimny,subcompact
+316,Suzuki,Vitara,subcompact
+317,TagAZ,Tager,subcompact
+318,TagAZ,Tiggo,compact crossover
+319,Tata,Sumo,compact
+320,Tata,Sumo Grande,compact
+321,Tata,Aria,midsize crossover
+322,Tata,Hexa,fullsize
+323,Tata,Safari,midsize
+324,Tesla,Model X,electric luxury compact crossover
+325,Toyota,Ist,subcompact crossover
+326,Toyota,C-HR,subcompact crossover
+327,Toyota,Etios Crossover,subcompact crossover
+328,Toyota,RAV4,"subcompact(1994–2005), subcompact crossover(1994–present)"
+329,Toyota,Land Cruiser Wagon 3-Door,subcompact
+330,Toyota,Rush,subcompact
+331,Toyota,Land Cruiser Wagon 4-Door,compact
+332,Toyota,4Runner,"compact(1984–2002), midsize(2003–present)"
+333,Toyota,Fortuner,compact crossover
+334,Toyota,Highlander,midsize crossover
+335,Toyota,Mark X ZiO,midsize crossover
+336,Toyota,Harrier,"luxury compact crossover(1988–2003), luxury midsize crossover(2003–present)"
+337,Toyota,Land Cruiser Prado 5-Door,midsize/luxury midsize
+338,Toyota,Land Cruiser,"compact(1955–1984), fullsize/luxury fullsize(VX Wagon 1967–present)"
+339,Toyota,Sequoia,fullsize/luxury fullsize
+340,Troller,T4,subcompact
+341,Trumpchi,GS4,compact
+342,Trumpchi,GS5,midsize
+343,Trumpchi,GS5 Super,midsize
+344,UAZ,469,subcompact
+345,UAZ,Patriot,compact
+346,Vauxhall,Mokka,luxury subcompact
+347,Venucia,T70,compact crossover
+348,Volkswagen,Atlas,midsize crossover
+349,Volkswagen,Taigun,subcompact crossover
+350,Volkswagen,Tiguan,compact crossover
+351,Volkswagen,Touareg,luxury midsize crossover
+352,Volvo,XC40,luxury compact SUV
+353,Volvo,XC60,luxury compact crossover
+354,Volvo,XC90,luxury midsize crossover
+355,Yema,F10,compact
+356,Yema,F12,midsize
+357,Yema,F16,midsize
+358,Yema,T70,midsize
+359,Youngman-Lotus,T5,midsize
+360,Zinoro,1E,compact hybrid crossover
+361,Zotye,2008,subcompact
+362,Zotye,Damai X5,compact crossover
+363,Zotye,SR7,compact crossover
+364,Zotye,T200,subcompact
+365,Zotye,T600,midsize
+366,ZX,C3 Urban Ark,subcompact
+367,ZX,Landmark,midsize
