@@ -17,12 +17,11 @@ import sys
 import os 
 
 if 'ubuntu' in os.getcwd():
-    sys.path.append('/home/ubuntu/flaskapp/mysite')
-    app_path = '/home/ubuntu/flaskapp'
+    sys.path.append('/home/ubuntu/permileFlask/mysite')
+    app_path = '/home/ubuntu/permileFlask'
 else:
     sys.path.append('/Users/ahakso/Documents/gitDir/permileFlask/mysite')
     app_path = '/users/ahakso/Documents/gitDir/permileFlask'
-print(sys.path)
 from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_hist
 import milemod
 #print(CustomDataFrame(pd.DataFrame([0,1]))) This shows that the CustomDataFrame class is working
@@ -85,9 +84,7 @@ def permileOutput():
   pie = mysavefig()
 
   # Make a context histogram
-  print('About to call nearest_neighbors')
   neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
-  print('about to call context_hist')
   ax = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
