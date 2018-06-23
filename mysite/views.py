@@ -1,20 +1,39 @@
 from flask import render_template
+from sklearn import preprocessing
 from flask import jsonify
 from flask import url_for
 from mysite import app
-from mysite.a_Model import ModelIt
 import pandas as pd
-import psycopg2
 import pickle
+import matplotlib.style
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 from flask import request
 import pdb
 import numpy as np
 import base64
 from io import BytesIO
+import sys
+import os 
 
-with open('/Users/ahakso/Documents/gitDir/permileFlask/mysite/static/car_data.pkl','rb') as f:
-    car_dict, car_data, _= pickle.load(f)
+if 'ubuntu' in os.getcwd():
+    sys.path.append('/home/ubuntu/flaskapp/mysite')
+    app_path = '/home/ubuntu/flaskapp'
+else:
+    sys.path.append('/Users/ahakso/Documents/gitDir/permileFlask/mysite')
+    app_path = '/users/ahakso/Documents/gitDir/permileFlask'
+print(sys.path)
+from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_hist
+import milemod
+#print(CustomDataFrame(pd.DataFrame([0,1]))) This shows that the CustomDataFrame class is working
+
+with open('{}/mysite/static/car_data.pkl'.format(app_path),'rb') as f:
+    _ , car_data, _ = pickle.load(f)
+with open('{}/mysite/static/combined_frame_dict.pkl'.format(app_path),'rb') as f:
+    car_dict  = pickle.load(f)
+with open('{}/mysite/static/combined_frame.pkl'.format(app_path),'rb') as f:
+    combined_frame = pickle.load(f)
+
 
 #staticfile_path = '/static'
 #app.config['jsonfiles'] = staticfile_path
@@ -34,6 +53,7 @@ def permileOutput():
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
     plt.clf()
     return figdata_png
+
   def make_autopct(values):
     def my_autopct(pct):
         total = sum(values)
@@ -57,8 +77,6 @@ def permileOutput():
   print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
 
   # Make a pie plot
-# fig, ax = plt.subplots(1)
-# ax.set_aspect(1)
   piedata = np.array([fuel, depreciation, maintain, repair])/total
   pielbl = ['gas','depreciation','maintenance','repair']
   plt.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
@@ -66,9 +84,16 @@ def permileOutput():
   ax.set_aspect(1)
   pie = mysavefig()
 
+  # Make a context histogram
+  print('About to call nearest_neighbors')
+  neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, user_year, n_neighbors=20)
+  print('about to call context_hist')
+  ax = context_hist(neighbs, neighbs_all)
+  histfig = mysavefig()
+
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),\
           total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
-          pie = pie)
+          pie = pie, histfig = histfig)
 
 @app.route('/get_models')
 def get_models():
@@ -100,4 +125,5 @@ def get_years():
   #read it in
 #  make = read_csv()
 # return car_dict[make]
+
 
