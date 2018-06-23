@@ -200,7 +200,7 @@ class CustomDataFrame(pd.DataFrame):
 #         print(df_add.loc[:,['make','model']].iloc[match_idx[0]])
 
 
-def context_hist(neighbs, neighbs_all):
+def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
     print('entered context_hist')
     # Make histogram
     mpl.style.use('seaborn')

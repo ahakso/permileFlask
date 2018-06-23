@@ -86,9 +86,9 @@ def permileOutput():
 
   # Make a context histogram
   print('About to call nearest_neighbors')
-  neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, user_year, n_neighbors=20)
+  neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
   print('about to call context_hist')
-  ax = context_hist(neighbs, neighbs_all)
+  ax = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),\
