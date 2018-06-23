@@ -32,6 +32,7 @@ def permileOutput():
     plt.savefig(png_output)
     png_output.seek(0)  # rewind to beginning of file
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
+    plt.clf()
     return figdata_png
   def make_autopct(values):
     def my_autopct(pct):
