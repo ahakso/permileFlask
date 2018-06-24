@@ -201,11 +201,13 @@ class CustomDataFrame(pd.DataFrame):
 
 
 def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
-    print('entered context_hist')
     # Make histogram
     mpl.style.use('seaborn')
     costs = neighbs.total.values
-    ax = plt.axes()
+    fig = plt.figure()
+    fig.patch.set_alpha(0.5)
+    ax = fig.add_subplot(111)
+    ax.patch.set_alpha(0.5)
     yl = ax.get_ylim()
     count,bins,_ = ax.hist(costs,edgecolor='black')
     ax.set_xlabel('$/mile',fontsize=20)

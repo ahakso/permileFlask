@@ -7,6 +7,7 @@ import pandas as pd
 import pickle
 import matplotlib.style
 import matplotlib as mpl
+mpl.use('Agg')
 import matplotlib.pyplot as plt
 from flask import request
 import pdb
@@ -47,7 +48,7 @@ def cesareans_input():
 def permileOutput():
   def mysavefig():
     png_output = BytesIO()
-    plt.savefig(png_output)
+    plt.savefig(png_output,transparent=False)
     png_output.seek(0)  # rewind to beginning of file
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
     plt.clf()
@@ -57,7 +58,6 @@ def permileOutput():
     def my_autopct(pct):
         total = sum(values)
         val = pct*total
-        #pdb.set_trace()
         return '{p:.1f}%\n({v:.0f} cents/mi)'.format(p=pct,v=val)
     return my_autopct
 
@@ -76,9 +76,17 @@ def permileOutput():
   print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
 
   # Make a pie plot
+  mpl.style.use('seaborn')
   piedata = np.array([fuel, depreciation, maintain, repair])/total
-  pielbl = ['gas','depreciation','maintenance','repair']
-  plt.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
+  pielbl = ['Fuel','Depreciation','Maintenance','Repair']
+  fig = plt.figure()
+  fig.patch.set_alpha(0.5)
+  ax = fig.add_subplot(111)
+  ax.patch.set_alpha(0.5)
+  patches, texts, autotexts = ax.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
+  pdb.set_trace()
+  [x.set_fontsize(20) for x in texts]
+  [x.set_fontsize(14) for x in autotexts]
   ax = plt.gca()
   ax.set_aspect(1)
   pie = mysavefig()
