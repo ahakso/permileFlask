@@ -48,6 +48,7 @@ def cesareans_input():
 def permileOutput():
   def mysavefig():
     png_output = BytesIO()
+    plt.tight_layout()
     plt.savefig(png_output,transparent=False)
     png_output.seek(0)  # rewind to beginning of file
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')

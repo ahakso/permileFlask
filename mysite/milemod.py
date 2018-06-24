@@ -215,6 +215,7 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
     ax.set_ylim(0.0,int(1.35*ax.get_ylim()[1]))
     ax.set_xlim(-xadj+xl[0],xadj+xl[1])
     ax.set_xlabel('$/mile',fontsize=20)
+    ax.set_ylabel('# Vehicles',fontsize=20)
     plt.tick_params(labelsize=18)
 
     # Label bars
@@ -234,13 +235,9 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
     #     xx = bins[bar_idx]
         nearby_bin_y = count[max(0,bar_idx-1):min(bar_idx+2,len(count)+1)]
         yy = max(nearby_bin_y)+upincrement
-        print(lastyy)
-        print(yy)
         if lastyy == yy:
             yy += upincrement*5
-            print(yy)
         lastyy = yy
-        print('\n\n')
 
         plt.text(xx,yy,mdlstr,fontsize=18,ha='center')
     return ax        
