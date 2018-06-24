@@ -84,7 +84,6 @@ def permileOutput():
   ax = fig.add_subplot(111)
   ax.patch.set_alpha(0.5)
   patches, texts, autotexts = ax.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
-  pdb.set_trace()
   [x.set_fontsize(20) for x in texts]
   [x.set_fontsize(14) for x in autotexts]
   ax = plt.gca()

@@ -208,26 +208,40 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
     fig.patch.set_alpha(0.5)
     ax = fig.add_subplot(111)
     ax.patch.set_alpha(0.5)
-    yl = ax.get_ylim()
+
     count,bins,_ = ax.hist(costs,edgecolor='black')
+    xl = ax.get_xlim()
+    xadj = (xl[1]-xl[0])*0.15
+    ax.set_ylim(0.0,int(1.35*ax.get_ylim()[1]))
+    ax.set_xlim(-xadj+xl[0],xadj+xl[1])
     ax.set_xlabel('$/mile',fontsize=20)
     plt.tick_params(labelsize=18)
 
     # Label bars
-    idx = (neighbs_all.make==tgt_make) & (neighbs_all.model==tgt_model) & (neighbs_all.year==tgt_year)
-    cost_tgt = neighbs_all.loc[idx,'total'].values[0]
+    idx_tgt = (neighbs_all.make==tgt_make) & (neighbs_all.model==tgt_model) & (neighbs_all.year==tgt_year)
+    cost_tgt = neighbs_all.loc[idx_tgt,'total'].values[0]
     idx_min = np.argmin(neighbs.total.values)
     idx_max = np.argmax(neighbs.total.values)
-    (cost_tgt >= bins) & (cost_tgt <=bins)
-    sample_costs = (cost_tgt,costs[idx_min],costs[idx_max])
-    mdlstrs = ('Your {}'.format(tgt_model),\
-               '{} {}\n{}'.format(neighbs.year.iloc[idx_min],neighbs.make.iloc[idx_min],neighbs.model.iloc[idx_min]),\
-               '{} {}\n{}'.format(neighbs.year.iloc[idx_max],neighbs.make.iloc[idx_max],neighbs.model.iloc[idx_max]))
+    upincrement = ax.get_ylim()[1]/20
+    sample_costs = (costs[idx_min], cost_tgt, costs[idx_max])
+    mdlstrs = ('{}\n{}\n{}'.format(neighbs.year.iloc[idx_min],neighbs.make.iloc[idx_min],neighbs.model.iloc[idx_min]),\
+               'Your\n{}'.format(tgt_model),\
+               '{}\n{}\n{}'.format(neighbs.year.iloc[idx_max],neighbs.make.iloc[idx_max],neighbs.model.iloc[idx_max]))
+    lastyy = 0
     for (cost, mdlstr) in zip(sample_costs, mdlstrs):
         bar_idx = int(np.nonzero((cost >= bins[:-1]) & (cost <= bins[1:]))[0][0])
         xx = np.mean([bins[bar_idx],bins[bar_idx+1]])
     #     xx = bins[bar_idx]
-        yy = count[bar_idx]+yl[1]/10
+        nearby_bin_y = count[max(0,bar_idx-1):min(bar_idx+2,len(count)+1)]
+        yy = max(nearby_bin_y)+upincrement
+        print(lastyy)
+        print(yy)
+        if lastyy == yy:
+            yy += upincrement*5
+            print(yy)
+        lastyy = yy
+        print('\n\n')
+
         plt.text(xx,yy,mdlstr,fontsize=18,ha='center')
     return ax        
         
