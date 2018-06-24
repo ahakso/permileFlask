@@ -30,31 +30,31 @@
    <![endif]-->
  </head>
 
- <body>
-     {# {{{ #}
-   <br><br>
-{# }}} #}
+<body>
+    <br><br>
+    <!-- Main results -->
     <div class="container">
       <div class="starter-template">
           <h3>Your {{user_vehicle[2]}} {{ user_vehicle[0]}} {{user_vehicle[1]}} has a cost of:</h3>
           <p class="lead">${{'{:2.3f}'.format(total)}} per mile, or ${{'{:.0f}'.format(3000*total)}} per month with typical mileage</p>
-          <img src="data:image/png;base64,{{pie}}" width="700" align="left"\>
-          <img src="data:image/png;base64,{{histfig}}" width="700" align="left"\>
-          <p> If your sedan was a 2017 Cadillac CT6, you'd be paying $987/month </p>          
-          <p> Think about driving a 2015 Honda Fit, a similar car that could save you $307/month!</p>
-          <p> You can buy it <a href="https://shift.com/cars/san-jose/Honda/Fit"> here</a>
       </div>
+    </div>
 
-
-      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-      <script src="static/js/bootstrap.min.js"></script>
-
-
-     </div><!-- /.container -->
-
+    <div class=container>
+         <img class="img-rounded" src="data:image/png;base64,{{pie}}" width="50%" align="left"\>
+         <img class="img-rounded" src="data:image/png;base64,{{histfig}}" width="50%" align="left"\>
+    </div>
+    
+    <div class=container>
+        <p style="text-align:left; font-size:125%;"> If your sedan was a 2017 Cadillac CT6, you'd be paying $987/month </p>          
+        <p style="text-align:left; font-size:125%;"> Think about driving a 2015 Honda Fit, a similar car that could save you $307/month!</p>
+        <p style="text-align:left; font-size:125%;"> You can buy it <a href="https://shift.com/cars/san-jose/Honda/Fit"> here</a>
+    </div>
    <!-- Bootstrap core JavaScript
    ================================================== -->
-   <!-- Placed at the end of the document so the pages load faster -->
+   <!--      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>-->
+
+  <!-- Placed at the end of the document so the pages load faster -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js"></script>
    </body>

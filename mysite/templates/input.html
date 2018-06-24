@@ -72,36 +72,44 @@
         <form  action="/output" method="POST"> 
         
             <!-- Make dropdown -->
-        <div class="selectpicker form-group">
-            <label for="select_make">Your Car:</label>
+        <div class="selectpicker form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
             <select class="form-control" id="select_make" name="select_make">
                 <option selected value=''> Select the Make of your car...</option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
-            </select>          
+            </select>         
+            </div> 
         </div>
 
          <!-- Model dropdown -->
-        <div class="form-group">
+        <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
             <select class="form-control" name="select_model" id="select_model">
                 <option selected value=''> ... </option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
             </select>          
+            </div>
         </div>
 
          <!-- Year dropdown -->
-        <div class="form-group">
+        <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
             <select class="form-control" name="select_year" id="select_year">
                 <option selected value=''> ... <option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
             </select>          
+            </div>
         </div>
-        <div>
+        <div class="col-md-12 text-center">
           <button type="submit" class="btn btn-default btn-lg">Learn your cost!!</button>
         </div>
 

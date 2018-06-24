@@ -35,8 +35,6 @@ with open('{}/mysite/static/combined_frame.pkl'.format(app_path),'rb') as f:
     combined_frame = pickle.load(f)
 
 
-#staticfile_path = '/static'
-#app.config['jsonfiles'] = staticfile_path
 
 @app.route('/')
 @app.route('/input', methods=['GET','POST'])
@@ -44,7 +42,6 @@ def cesareans_input():
     return render_template("input.html", car_dict = car_dict)
 
 @app.route('/output', methods=['GET', 'POST'])
-
 def permileOutput():
   def mysavefig():
     png_output = BytesIO()
