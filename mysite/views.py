@@ -16,6 +16,7 @@ import base64
 from io import BytesIO
 import sys
 import os 
+import requests
 
 if 'ubuntu' in os.getcwd():
     sys.path.append('/home/ubuntu/permileFlask/mysite')
@@ -23,8 +24,8 @@ if 'ubuntu' in os.getcwd():
 else:
     sys.path.append('/Users/ahakso/Documents/gitDir/permileFlask/mysite')
     app_path = '/users/ahakso/Documents/gitDir/permileFlask'
-from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_hist
-import milemod
+from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_hist, prep_gas, zip2price
+
 #print(CustomDataFrame(pd.DataFrame([0,1]))) This shows that the CustomDataFrame class is working
 
 with open('{}/mysite/static/car_data.pkl'.format(app_path),'rb') as f:
@@ -33,7 +34,11 @@ with open('{}/mysite/static/combined_frame_dict.pkl'.format(app_path),'rb') as f
     car_dict  = pickle.load(f)
 with open('{}/mysite/static/combined_frame.pkl'.format(app_path),'rb') as f:
     combined_frame = pickle.load(f)
+with open('{}/mysite/static/zipstate.pkl'.format(app_path),'rb') as f:
+                zipstate = pickle.load(f)
 
+# Get today's gas prices
+gasprice = prep_gas()
 
 
 @app.route('/')
@@ -64,17 +69,26 @@ def permileOutput():
   user_make = request.form['select_make']
   user_model= request.form['select_model']
   user_year = request.form['select_year']
+  user_zip = request.form['user_zip']
+  if len(user_zip) == 0:
+      user_zip = 999999
+  else:
+    user_zip = float(user_zip)
+  user_gas = zip2price(zipstate, gasprice, user_zip)
+  monthly_miles = float(request.form.get('monthly_miles'))
+
     
   # Pull relevant values from table
   depreciation = car_data.loc[(user_make, user_model,int(user_year)),'dollars_per_mile']
-  fuel = 3.5/car_data.loc[(user_make, user_model,int(user_year)),'mpg']
+  fuel = user_gas/car_data.loc[(user_make, user_model,int(user_year)),'mpg']
   repair = car_data.loc[(user_make, user_model,int(user_year)),'repair']
   maintain = car_data.loc[(user_make, user_model,int(user_year)),'maintain']
   total = fuel+repair+maintain+depreciation
-  print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
+  #print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
 
   # Make a pie plot
   mpl.style.use('seaborn')
+  pdb.set_trace()
   piedata = np.array([fuel, depreciation, maintain, repair])/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
   fig = plt.figure()
@@ -93,7 +107,7 @@ def permileOutput():
   ax = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
-  return render_template("output.html", user_vehicle = (user_make, user_model, user_year),\
+  return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\
           total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
           pie = pie, histfig = histfig)
 

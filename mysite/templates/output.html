@@ -36,7 +36,7 @@
     <div class="container">
       <div class="starter-template">
           <h3>Your {{user_vehicle[2]}} {{ user_vehicle[0]}} {{user_vehicle[1]}} has a cost of:</h3>
-          <p class="lead">${{'{:2.3f}'.format(total)}} per mile, or ${{'{:.0f}'.format(3000*total)}} per month with typical mileage</p>
+          <p class="lead">${{'{:2.3f}'.format(total)}} per mile, or ${{'{:.0f}'.format(monthly_miles*total)}} monthly at {{'{:.0f}'.format(monthly_miles)}} miles/month</p>
       </div>
     </div>
 

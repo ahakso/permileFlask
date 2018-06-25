@@ -1,10 +1,14 @@
 import pandas as pd
+from bs4 import BeautifulSoup as Soup
 import numpy as np
 from sklearn import preprocessing
 import matplotlib.style
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-
+from urllib.request import urlopen as u_req
+import urllib
+import requests
+import re
 
 
 def nearest_neighbors(df, tgt_make, tgt_model, tgt_year, n_neighbors=20):
@@ -241,4 +245,84 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
 
         plt.text(xx,yy,mdlstr,fontsize=18,ha='center')
     return ax        
-        
+
+def prep_gas():
+	# define state name to abbreviation dictionary
+	statename_to_abbr = {
+	# Other
+	'District of Columbia': 'DC',
+    	# States
+	'Alabama': 'AL',
+    	'Montana': 'MT',
+    	'Alaska': 'AK',
+    	'Nebraska': 'NE',
+    	'Arizona': 'AZ',
+    	'Nevada': 'NV',
+    	'Arkansas': 'AR',
+    	'New Hampshire': 'NH',
+    	'California': 'CA',
+    	'New Jersey': 'NJ',
+    	'Colorado': 'CO',
+    	'New Mexico': 'NM',
+    	'Connecticut': 'CT',
+    	'New York': 'NY',
+    	'Delaware': 'DE',
+    	'North Carolina': 'NC',
+    	'Florida': 'FL',
+    	'North Dakota': 'ND',
+    	'Georgia': 'GA',
+    	'Ohio': 'OH',
+    	'Hawaii': 'HI',
+    	'Oklahoma': 'OK',
+    	'Idaho': 'ID',
+    	'Oregon': 'OR',
+    	'Illinois': 'IL',
+    	'Pennsylvania': 'PA',
+    	'Indiana': 'IN',
+    	'Rhode Island': 'RI',
+    	'Iowa': 'IA',
+    	'South Carolina': 'SC',
+    	'Kansas': 'KS',
+    	'South Dakota': 'SD',
+    	'Kentucky': 'KY',
+    	'Tennessee': 'TN',
+    	'Louisiana': 'LA',
+    	'Texas': 'TX',
+    	'Maine': 'ME',
+    	'Utah': 'UT',
+    	'Maryland': 'MD',
+    	'Vermont': 'VT',
+    	'Massachusetts': 'MA',
+    	'Virginia': 'VA',
+    	'Michigan': 'MI',
+    	'Washington': 'WA',
+    	'Minnesota': 'MN',
+    	'West Virginia': 'WV',
+    	'Mississippi': 'MS',
+    	'Wisconsin': 'WI',
+    	'Missouri': 'MO',
+    	'Wyoming': 'WY',
+    	}
+	# Get the fuel price data, fooling scrape blocker with header
+	url = 'http://gasprices.aaa.com/state-gas-price-averages/'
+	headers = {'User-Agent':'Chrome/51.0.2704.103'}
+	page = requests.get(url,headers=headers)
+	soup = Soup(page.text,'html.parser')
+	tr = soup.find_all('table')[0].find_all('tr')
+        # Parse out the state name and price
+	state = [re.search('\w{3,} ?\w{0,} ?\w{0,}',x.find_all('td')[0].text).group(0).strip() for x in tr[1:]]
+	price = [(re.search('\d.\d*',x.find_all('td')[1].text).group(0)) for x in tr[1:]]
+        # Place in a dataframe
+	gasprice = pd.DataFrame(np.array([[statename_to_abbr[x] for x in state],price]).transpose(),columns=['state','price'])
+	gasprice.price = gasprice.price.astype('float')
+	return gasprice
+
+
+def zip2price(zipstate, gasprice, user_zip=999999):
+	user_state = zipstate.loc[zipstate.zip==user_zip,'state']    
+	if len(user_state) == 0:
+		user_gas = gasprice.price.mean()
+	else:
+	# Get the user's gas price
+		user_gas = gasprice.loc[user_state.values[0]==gasprice.state,'price'].values[0]
+	return user_gas

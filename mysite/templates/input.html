@@ -62,8 +62,7 @@
 <!-- h2 text -->
 {# {{{ #}
     <div class="starter-template">
-        <h2>Tell Us About Your Car!</h2>
-        <p>All we need is your make, model and year</p>
+        <h2>Tell Us About Your Driving!</h2>
     </div>
     {# }}} #}
     
@@ -75,6 +74,7 @@
         <div class="selectpicker form-group row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
+            <label for="select_make" style="font-size:120%">What do you drive?:</label>
             <select class="form-control" id="select_make" name="select_make">
                 <option selected value=''> Select the Make of your car...</option>
                 {% for key, _ in car_dict.items() %}
@@ -109,10 +109,29 @@
             </select>          
             </div>
         </div>
-        <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-default btn-lg">Learn your cost!!</button>
+
+        <!-- Annual miles driven -->
+        <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <label for="monthly_miles" style="font-size:120%">How many miles do you drive monthly?:</label>
+                <input type="number" class="form-control" step="10" value="3500" name="monthly_miles" id="monthly_miles" style="-webkit-appearance: none; margin: 0;">
+            </div>
         </div>
 
+        <!-- Zip Code -->
+         <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <label for="user_zip" style="font-size:120%">What's the zip where you drive?:</label>
+                <input type="text" pattern="\d{5}" placeholder="5 digit zip (optional)" class="form-control"  name="user_zip" id="user_zip">
+            </div>
+        </div>
+
+       <div class="col-md-12 text-center">
+          <button type="submit" class="btn btn-default btn-lg">Learn your cost!!</button>
+        </div>
+        
       </form>
     </div>
 
