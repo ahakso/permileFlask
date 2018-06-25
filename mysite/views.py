@@ -88,7 +88,6 @@ def permileOutput():
 
   # Make a pie plot
   mpl.style.use('seaborn')
-  pdb.set_trace()
   piedata = np.array([fuel, depreciation, maintain, repair])/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
   fig = plt.figure()
@@ -104,12 +103,12 @@ def permileOutput():
 
   # Make a context histogram
   neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
-  ax = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
+  ax, context_models, context_costs = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\
           total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
-          pie = pie, histfig = histfig)
+          pie = pie, histfig = histfig, context_models = context_models, context_costs = context_costs)
 
 @app.route('/get_models')
 def get_models():

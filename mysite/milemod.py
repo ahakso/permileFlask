@@ -244,7 +244,7 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
         lastyy = yy
 
         plt.text(xx,yy,mdlstr,fontsize=18,ha='center')
-    return ax        
+    return ax, mdlstrs, sample_costs
 
 def prep_gas():
 	# define state name to abbreviation dictionary

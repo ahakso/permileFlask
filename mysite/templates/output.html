@@ -46,8 +46,9 @@
     </div>
     
     <div class=container>
-        <p style="text-align:left; font-size:125%;"> If your sedan was a 2017 Cadillac CT6, you'd be paying $987/month </p>          
-        <p style="text-align:left; font-size:125%;"> Think about driving a 2015 Honda Fit, a similar car that could save you $307/month!</p>
+        <p style="text-align:left; font-size:125%;"> If your sedan was a {{context_models[2]}}, you'd be paying $
+        {{context_costs[2]*monthly_miles}}/month </p>          
+        <p style="text-align:left; font-size:125%;"> Think about driving a {{context_models[0]}}, a similar car that could save you ${{(context_costs[1]-context_costs[0])*monthly_miles}}/month!</p>
         <p style="text-align:left; font-size:125%;"> You can buy it <a href="https://shift.com/cars/san-jose/Honda/Fit"> here</a>
     </div>
    <!-- Bootstrap core JavaScript
