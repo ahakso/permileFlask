@@ -28,16 +28,12 @@ from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_h
 
 #print(CustomDataFrame(pd.DataFrame([0,1]))) This shows that the CustomDataFrame class is working
 
-with open('{}/mysite/static/combined_frame_dict.pkl'.format(app_path),'rb') as f:
-    car_dict  = pickle.load(f)
-with open('{}/mysite/static/combined_frame.pkl'.format(app_path),'rb') as f:
-    combined_frame = pickle.load(f)
+with open('{}/mysite/static/combined_frame_and_dict_final.pkl'.format(app_path),'rb') as f:
+    combined_frame, car_dict = pickle.load(f)
 with open('{}/mysite/static/zipstate.pkl'.format(app_path),'rb') as f:
                 zipstate = pickle.load(f)
-#combined_frame = combined_frame.set_index(['make','model','year'])
 # Get today's gas prices
 gasprice = prep_gas()
-
 
 @app.route('/')
 @app.route('/input', methods=['GET','POST'])
@@ -74,6 +70,8 @@ def permileOutput():
     user_zip = float(user_zip)
   user_gas = zip2price(zipstate, gasprice, user_zip)
   monthly_miles = float(request.form.get('monthly_miles'))
+  with open('{}/mysite/static/combined_frame_and_dict_final.pkl'.format(app_path),'rb') as f:
+      combined_frame, car_dict = pickle.load(f)
 
     
   # Pull relevant values from table
@@ -84,10 +82,12 @@ def permileOutput():
   total = fuel+repair+maintain+depreciation
   #print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
 
+  # This column is needed for the neighbors algorithm
+  combined_frame = combined_frame.assign(total = combined_frame.dollars_per_mile+3.5/combined_frame.mpg+combined_frame.repair+combined_frame.maintain)
+  
   # Make a pie plot
   mpl.style.use('seaborn')
   cost_list = [fuel, depreciation, maintain, repair]
-  pdb.set_trace()
   piedata = np.array(cost_list)/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
   pielbl = ['{}:\n{:0.2f} cents/mile'.format(pielbl[x],100*cost_list[x]) for x in range(4)]
