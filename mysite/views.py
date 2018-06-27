@@ -88,15 +88,18 @@ def permileOutput():
 
   # Make a pie plot
   mpl.style.use('seaborn')
-  piedata = np.array([fuel, depreciation, maintain, repair])/total
+  cost_list = [fuel, depreciation, maintain, repair]
+  piedata = np.array(cost_list)/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
+  pielbl = ['{}:\n{:0.2f} cents/mile'.format(pielbl[x],100*cost_list[x]) for x in range(4)]
   fig = plt.figure()
   fig.patch.set_alpha(0.5)
   ax = fig.add_subplot(111)
   ax.patch.set_alpha(0.5)
-  patches, texts, autotexts = ax.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
+  patches, texts = ax.pie(piedata,labels=pielbl, labeldistance=0.95)
+  #patches, texts, autotexts = ax.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
   [x.set_fontsize(20) for x in texts]
-  [x.set_fontsize(14) for x in autotexts]
+# [x.set_fontsize(14) for x in autotexts]
   ax = plt.gca()
   ax.set_aspect(1)
   pie = mysavefig()
