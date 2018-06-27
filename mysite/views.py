@@ -28,15 +28,13 @@ from milemod import CustomDataFrame,  CustomSeries, nearest_neighbors, context_h
 
 #print(CustomDataFrame(pd.DataFrame([0,1]))) This shows that the CustomDataFrame class is working
 
-with open('{}/mysite/static/car_data.pkl'.format(app_path),'rb') as f:
-    _ , car_data, _ = pickle.load(f)
 with open('{}/mysite/static/combined_frame_dict.pkl'.format(app_path),'rb') as f:
     car_dict  = pickle.load(f)
 with open('{}/mysite/static/combined_frame.pkl'.format(app_path),'rb') as f:
     combined_frame = pickle.load(f)
 with open('{}/mysite/static/zipstate.pkl'.format(app_path),'rb') as f:
                 zipstate = pickle.load(f)
-
+#combined_frame = combined_frame.set_index(['make','model','year'])
 # Get today's gas prices
 gasprice = prep_gas()
 
@@ -79,16 +77,17 @@ def permileOutput():
 
     
   # Pull relevant values from table
-  depreciation = car_data.loc[(user_make, user_model,int(user_year)),'dollars_per_mile']
-  fuel = user_gas/car_data.loc[(user_make, user_model,int(user_year)),'mpg']
-  repair = car_data.loc[(user_make, user_model,int(user_year)),'repair']
-  maintain = car_data.loc[(user_make, user_model,int(user_year)),'maintain']
+  depreciation = combined_frame.loc[(user_make, user_model,int(user_year)),'dollars_per_mile']
+  fuel = user_gas/combined_frame.loc[(user_make, user_model,int(user_year)),'mpg']
+  repair = combined_frame.loc[(user_make, user_model,int(user_year)),'repair']
+  maintain = combined_frame.loc[(user_make, user_model,int(user_year)),'maintain']
   total = fuel+repair+maintain+depreciation
   #print('gas: {}\ndepreciation: {}\nrepair: {}\nmaintain: {}\n'.format(fuel, depreciation, repair, maintain))
 
   # Make a pie plot
   mpl.style.use('seaborn')
   cost_list = [fuel, depreciation, maintain, repair]
+  pdb.set_trace()
   piedata = np.array(cost_list)/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
   pielbl = ['{}:\n{:0.2f} cents/mile'.format(pielbl[x],100*cost_list[x]) for x in range(4)]
