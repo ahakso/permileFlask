@@ -1,10 +1,10 @@
 body {
-  background-image: url("../img/background.jpg");
+  background-image: url("../img/backgroundtransparent.jpg");
   background-size: auto;
   background-position: 50% 7%;
   background-repeat: no-repeat;
   background-opacity: 0.1;
-  color: white;
+  color: black;
   padding-top: 50px;
 }
 .starter-template {
