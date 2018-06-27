@@ -65,8 +65,9 @@ def nearest_neighbors(df, tgt_make, tgt_model, tgt_year, n_neighbors=20):
 #         print(models_included)
         cars_to_return += n_neighbors-models_included
     return_neighbs_all_models = return_neighbs
-    return_neighbs = return_neighbs[return_neighbs.total.groupby([return_neighbs.make,return_neighbs.model]).apply(lambda x: x == x.min())]
-    return return_neighbs, return_neighbs_all_models
+    return_neighbs_min = return_neighbs[return_neighbs.total.groupby([return_neighbs.make,return_neighbs.model]).apply(lambda x: x == x.min())]
+    return_neighbs_max = return_neighbs[return_neighbs.total.groupby([return_neighbs.make,return_neighbs.model]).apply(lambda x: x == x.max())]
+    return return_neighbs_min, return_neighbs_max, return_neighbs_all_models
 
 class CustomSeries(pd.Series):
     @property

@@ -104,8 +104,8 @@ def permileOutput():
   pie = mysavefig()
 
   # Make a context histogram
-  neighbs, neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
-  ax, context_models, context_costs = context_hist(neighbs, neighbs_all, user_make, user_model, int(user_year))
+  neighbs_min, neighbs_max,  neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
+  ax, context_models, context_costs = context_hist(neighbs_min, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\
