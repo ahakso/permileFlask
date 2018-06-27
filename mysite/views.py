@@ -44,7 +44,7 @@ def cesareans_input():
 def permileOutput():
   def mysavefig():
     png_output = BytesIO()
-    plt.tight_layout()
+#   plt.tight_layout()
     plt.savefig(png_output,transparent=False)
     png_output.seek(0)  # rewind to beginning of file
     figdata_png = base64.b64encode(png_output.getvalue()).decode('utf8')
@@ -55,7 +55,7 @@ def permileOutput():
     def my_autopct(pct):
         total = sum(values)
         val = pct*total
-        return '{p:.1f}%\n({v:.0f} cents/mi)'.format(p=pct,v=val)
+        return '{p:.1f}%\n({v:.0f} \xa2/mi)'.format(p=pct,v=val)
     return my_autopct
 
 
@@ -90,14 +90,14 @@ def permileOutput():
   cost_list = [fuel, depreciation, maintain, repair]
   piedata = np.array(cost_list)/total
   pielbl = ['Fuel','Depreciation','Maintenance','Repair']
-  pielbl = ['{}:\n{:0.2f} cents/mile'.format(pielbl[x],100*cost_list[x]) for x in range(4)]
+  pielbl = ['{}:\n{:0.2f} \xa2/mile'.format(pielbl[x],100*cost_list[x]) for x in range(4)]
   fig = plt.figure()
-  fig.patch.set_alpha(0.5)
-  ax = fig.add_subplot(111)
-  ax.patch.set_alpha(0.5)
-  patches, texts = ax.pie(piedata,labels=pielbl, labeldistance=0.95)
+  fig.patch.set_alpha(0.8)
+  ax = fig.add_axes((0.25,0.25,.5,.5))
+  ax.patch.set_alpha(0.8)
+  patches, texts = ax.pie(piedata,labels=pielbl, explode=(0.03,0.03,0.03,0.03), labeldistance=1.4)
   #patches, texts, autotexts = ax.pie(piedata,labels=pielbl,autopct=make_autopct(total*piedata))
-  [x.set_fontsize(20) for x in texts]
+  [x.set_fontsize(24) for x in texts]
 # [x.set_fontsize(14) for x in autotexts]
   ax = plt.gca()
   ax.set_aspect(1)
@@ -105,7 +105,7 @@ def permileOutput():
 
   # Make a context histogram
   neighbs_min, neighbs_max,  neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
-  ax, context_models, context_costs = context_hist(neighbs_min, neighbs_all, user_make, user_model, int(user_year))
+  ax, context_models, context_costs = context_hist(neighbs_min, neighbs_max, neighbs_all, user_make, user_model, int(user_year))
   histfig = mysavefig()
 
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\

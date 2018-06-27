@@ -205,13 +205,13 @@ class CustomDataFrame(pd.DataFrame):
 #         print(df_add.loc[:,['make','model']].iloc[match_idx[0]])
 
 
-def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
+def context_hist(neighbs_min, neighbs_max, neighbs_all, tgt_make, tgt_model, tgt_year):
     # Make histogram
     mpl.style.use('seaborn')
-    costs = neighbs.total.values
+    costs = neighbs_min.total.values
     fig = plt.figure()
-    fig.patch.set_alpha(0.5)
-    ax = fig.add_subplot(111)
+    fig.patch.set_alpha(0.8)
+    ax = fig.add_axes((0,0.15,.94,.79))
     ax.patch.set_alpha(0.5)
 
     count,bins,_ = ax.hist(costs,edgecolor='black')
@@ -226,13 +226,13 @@ def context_hist(neighbs, neighbs_all, tgt_make, tgt_model, tgt_year):
     # Label bars
     idx_tgt = (neighbs_all.make==tgt_make) & (neighbs_all.model==tgt_model) & (neighbs_all.year==tgt_year)
     cost_tgt = neighbs_all.loc[idx_tgt,'total'].values[0]
-    idx_min = np.argmin(neighbs.total.values)
-    idx_max = np.argmax(neighbs.total.values)
+    idx_min = np.argmin(neighbs_min.total.values)
+    idx_max = np.argmax(neighbs_max.total.values)
     upincrement = ax.get_ylim()[1]/20
     sample_costs = (costs[idx_min], cost_tgt, costs[idx_max])
-    mdlstrs = ('{}\n{}\n{}'.format(neighbs.year.iloc[idx_min],neighbs.make.iloc[idx_min],neighbs.model.iloc[idx_min]),\
+    mdlstrs = ('{}\n{}\n{}'.format(neighbs_min.year.iloc[idx_min],neighbs_min.make.iloc[idx_min],neighbs_min.model.iloc[idx_min]),\
                'Your\n{}'.format(tgt_model),\
-               '{}\n{}\n{}'.format(neighbs.year.iloc[idx_max],neighbs.make.iloc[idx_max],neighbs.model.iloc[idx_max]))
+               '{}\n{}\n{}'.format(neighbs_max.year.iloc[idx_max],neighbs_max.make.iloc[idx_max],neighbs_max.model.iloc[idx_max]))
     lastyy = 0
     for (cost, mdlstr) in zip(sample_costs, mdlstrs):
         bar_idx = int(np.nonzero((cost >= bins[:-1]) & (cost <= bins[1:]))[0][0])
