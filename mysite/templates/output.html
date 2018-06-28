@@ -30,25 +30,34 @@
    <![endif]-->
  </head>
 
-<body>
+<body class="output-template">
     <br><br>
     <!-- Main results -->
     <div class="container">
-      <div class="starter-template">
-          <h1>Your {{user_vehicle[2]}} {{ user_vehicle[0]}} {{user_vehicle[1]}} has a cost of:</h1>
-          <h2 style="font-size:150%" class="lead">${{'{:2.3f}'.format(total)}} per mile, or ${{'{:.0f}'.format(monthly_miles*total)}} monthly at {{'{:.0f}'.format(monthly_miles)}} miles/month</h2>
+      <div>
+          <h1 style="font-size:420%" >Your {{user_vehicle[2]}} {{ user_vehicle[0]}} {{user_vehicle[1]}} has a cost of:</h1>
+          <h2 style="font-size:320%" class="lead">${{'{:2.2f}'.format(total)}} per mile, or ${{'{:.0f}'.format(monthly_miles*total)}} monthly ({{'{:.0f}'.format(monthly_miles)}} mi/month)</h2>
       </div>
     </div>
+    
+    <br></br>
 
     <div class=container>
-         <img class="img-rounded" src="data:image/png;base64,{{pie}}" width="50%" align="left"\>
-         <img class="img-rounded" src="data:image/png;base64,{{histfig}}" width="50%" align="left"\>
+        <h2 style="font-size:350%"> The Breakdown</h2>
+        <img title="Here's how the costs break down" class="img-rounded" src="data:image/png;base64,{{pie}}" width="95%" align="center"\>
     </div>
-    
+    <br></br>
+     <div class=container>
+         <h2 style="font-size:350%"> How do similar vehicles stack up?</h2>
+         <img class="img-rounded" src="data:image/png;base64,{{histfig}}" width="95%" align="center"\>
+    </div>
+    <br></br>
+   
     <div class=container>
-        <p style="text-align:left; font-size:160%;"> If your sedan was a {{context_models[2]}}, you'd be paying ${{'{:.0f}'.format(context_costs[2]*monthly_miles)}}/month </p>          
-        <p style="text-align:left; font-size:160%;"> Think about driving a {{context_models[0]}}, a similar car that could save you ${{'{:.0f}'.format((context_costs[1]-context_costs[0])*monthly_miles)}}/month!</p>
-        <p style="text-align:left; font-size:160%;"> You can check it out <a href="https://shift.com/cars/san-jose/Honda/Fit"> here</a>
+        <p style="text-align:left; font-size:220%;"> Costs for similar cars range dramatically!</p> 
+        <p style="text-align:left; font-size:220%;"> A {{context_models[2]}} incurs costs of ${{'{:.0f}'.format(context_costs[2]*monthly_miles)}}/month...</p>          
+        <p style="text-align:left; font-size:220%;"> Consider a {{context_models[0]}}, it could save you ${{'{:.0f}'.format((context_costs[1]-context_costs[0])*monthly_miles)}}/month!</p>
+        <p style="text-align:left; font-size:220%;"> You can check it out <a href="https://shift.com/cars/san-jose/Honda/Fit"> here</a>
     </div>
    <!-- Bootstrap core JavaScript
    ================================================== -->

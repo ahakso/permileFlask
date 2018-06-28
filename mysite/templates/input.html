@@ -31,7 +31,7 @@
    <![endif]-->
  </head>
  {# }}} #}
- <body>
+ <body class="starter-template">
      <!-- Navbar 
      {# {{{ #}
    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -61,8 +61,8 @@
 <div class="container">
 <!-- h2 text -->
 {# {{{ #}
-    <div class="starter-template">
-        <h2>Tell Us About Your Driving!</h2>
+    <div>
+        <h1 style="font-size:350%">Tell Us About Your Driving!</h2>
     </div>
     {# }}} #}
     
@@ -70,13 +70,13 @@
 
         <form  action="/output" method="POST"> 
         
+        <div  class="selectpicker form-group row">
+            <div class="col-sm-1"></div>
             <!-- Make dropdown -->
-        <div class="selectpicker form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-            <label for="select_make" style="font-size:120%">What do you drive?:</label>
-            <select class="form-control" id="select_make" name="select_make">
-                <option selected value=''> Select the Make of your car...</option>
+            <div class="col-sm-10">
+            <label for="select_make" style="font-size:260%">What car are you considering?:</label>
+            <select class="form-control" style="font-size:150%" id="select_make" name="select_make">
+                <option selected value=''> Select the Make...</option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
                 {% endfor %}
@@ -86,9 +86,9 @@
 
          <!-- Model dropdown -->
         <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-            <select class="form-control" name="select_model" id="select_model">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+            <select class="form-control" style="font-size:150%" name="select_model" id="select_model">
                 <option selected value=''> ... </option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -99,9 +99,9 @@
 
          <!-- Year dropdown -->
         <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-            <select class="form-control" name="select_year" id="select_year">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+            <select class="form-control" style="font-size:150%" name="select_year" id="select_year">
                 <option selected value=''> ... <option>
                 {% for key, _ in car_dict.items() %}
                 <option value="{{ key }}">{{ key }}</option>
@@ -110,26 +110,26 @@
             </div>
         </div>
 
-        <!-- Annual miles driven -->
+        <!-- Montly miles driven -->
         <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <label for="monthly_miles" style="font-size:120%">How many miles do you drive monthly?:</label>
-                <input type="number" class="form-control" step="10" value="3500" name="monthly_miles" id="monthly_miles" style="-webkit-appearance: none; margin: 0;">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <label for="monthly_miles" style="font-size:240%">How many miles do you drive monthly?:</label>
+                <input type="number" class="form-control" style="font-size:150%" step="10" value="3500" name="monthly_miles" id="monthly_miles" style="-webkit-appearance: none; margin: 0;">
             </div>
         </div>
 
         <!-- Zip Code -->
          <div class="form-group row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4">
-                <label for="user_zip" style="font-size:120%">What's the zip where you drive?:</label>
-                <input type="text" pattern="\d{5}" placeholder="5 digit zip (optional)" class="form-control"  name="user_zip" id="user_zip">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <label for="user_zip" style="font-size:240%">What's the zip where you drive?:</label>
+                <input type="text" style="font-size:150%"  pattern="\d{5}" placeholder="5 digit zip (optional)" class="form-control"  name="user_zip" id="user_zip">
             </div>
         </div>
 
        <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-default btn-lg">Learn your cost!!</button>
+          <button type="submit" class="btn btn-default btn-lg">See the cost!!</button>
         </div>
         
       </form>
@@ -162,7 +162,6 @@
 //                  document.getElementById("demo").innerHTML = item.;
                         dropdown.model.append(
                             $('<option>', {
-                                // style: df['colors'].iloc[item.id]
                                 value: item.name,
                                 text: item.name
                             })
@@ -186,7 +185,6 @@
                     data.forEach(function(item) {
                         dropdown.year.append(
                             $('<option>', {
-                                // style: df['colors'].iloc[item.id]
                                 value: item.name,
                                 text: item.name
                             })
