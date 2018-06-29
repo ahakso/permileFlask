@@ -106,11 +106,12 @@ def permileOutput():
   # Make a context histogram
   neighbs_min, neighbs_max,  neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
   ax, context_models, context_costs = context_hist(neighbs_min, neighbs_max, neighbs_all, user_make, user_model, int(user_year))
+  target_make = context_models[0].split()[1].capitalize()
+  target_model = context_models[0].split()[2]
   histfig = mysavefig()
-
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\
           total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
-          pie = pie, histfig = histfig, context_models = context_models, context_costs = context_costs)
+          pie = pie, histfig = histfig, context_models = context_models, context_costs = context_costs, target=(target_make,target_model))
 
 @app.route('/get_models')
 def get_models():
