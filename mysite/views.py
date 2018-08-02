@@ -74,7 +74,7 @@ def permileOutput():
       combined_frame, car_dict = pickle.load(f)
 
     
-  # Pull relevant values from table
+ # Pull relevant values from table
   depreciation = combined_frame.loc[(user_make, user_model,int(user_year)),'dollars_per_mile']
   fuel = user_gas/combined_frame.loc[(user_make, user_model,int(user_year)),'mpg']
   repair = combined_frame.loc[(user_make, user_model,int(user_year)),'repair']
@@ -84,7 +84,7 @@ def permileOutput():
 
   # This column is needed for the neighbors algorithm
   combined_frame = combined_frame.assign(total = combined_frame.dollars_per_mile+3.5/combined_frame.mpg+combined_frame.repair+combined_frame.maintain)
-  
+ 
   # Make a pie plot
   mpl.style.use('seaborn')
   cost_list = [fuel, depreciation, maintain, repair]
@@ -104,11 +104,14 @@ def permileOutput():
   pie = mysavefig()
 
   # Make a context histogram
+  print('entering nearest_neighbor')
   neighbs_min, neighbs_max,  neighbs_all = nearest_neighbors(combined_frame, user_make, user_model, int(user_year), n_neighbors=20)
+  print(neighbs_min)
   ax, context_models, context_costs = context_hist(neighbs_min, neighbs_max, neighbs_all, user_make, user_model, int(user_year))
   target_make = context_models[0].split()[1].capitalize()
   target_model = context_models[0].split()[2]
   histfig = mysavefig()
+
   return render_template("output.html", user_vehicle = (user_make, user_model, user_year),monthly_miles=monthly_miles,\
           total = total, depreciation = depreciation, fuel = fuel, repair = repair, maintain = maintain,\
           pie = pie, histfig = histfig, context_models = context_models, context_costs = context_costs, target=(target_make,target_model))

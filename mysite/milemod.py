@@ -57,6 +57,7 @@ def nearest_neighbors(df, tgt_make, tgt_model, tgt_year, n_neighbors=20):
     distance = np.asarray(distance)   
     sort_idx = np.argsort(np.sum((distance**2),1))
     neighbs = neighbs.iloc[sort_idx,:]
+    n_neighbors = min(n_neighbors, neighbs.model.nunique()-1)
     cars_to_return = n_neighbors
     models_included = 0
     while models_included < n_neighbors:
@@ -64,6 +65,7 @@ def nearest_neighbors(df, tgt_make, tgt_model, tgt_year, n_neighbors=20):
         models_included = return_neighbs.model.nunique()
 #         print(models_included)
         cars_to_return += n_neighbors-models_included
+    print('exited while loop')
     return_neighbs_all_models = return_neighbs
     return_neighbs_min = return_neighbs[return_neighbs.total.groupby([return_neighbs.make,return_neighbs.model]).apply(lambda x: x == x.min())]
     return_neighbs_max = return_neighbs[return_neighbs.total.groupby([return_neighbs.make,return_neighbs.model]).apply(lambda x: x == x.max())]
